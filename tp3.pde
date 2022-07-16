@@ -34,11 +34,6 @@ void draw() {
       rect(random(width), random (y=y+suma), 20, 20);
     }
   }
-  /*if () {
-   pantallasI(txt[2], 400, 100);
-   } else if () {
-   pantallasI(txt[3], width/2, height/2);
-   } EN CASO DE GANAR O PERDER.*/
 }
 void keyPressed() {
   if (key== 'x' || key=='X') {  //PASAR PANTALLAS.
@@ -48,8 +43,4 @@ void keyPressed() {
     xPlayer-=30;
   } else if (key=='d' || key =='D') { //DERECHA.
     xPlayer+=30;
-  }
-  if (key == 'r' || key== 'R') { //REINICIAR.
-    estadoJuego=0;
-  }
 }
