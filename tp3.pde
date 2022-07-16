@@ -4,43 +4,53 @@
 //COMISIÓN: 1.
 //VIDEO Youtube:https://www.youtube.com/watch?v=DiICRcrbTF8&ab_channel=LucasBusnelli
 int cant;
+int separa;
 int xPlayer;
 float y;
-float x;
-float suma;
-float estadoJuego;
-String [] txt = {"LLUVIA ÁCIDA.\n Presione X para continuar", "Instrucciones: \n Esquivar la lluvia antes de que acabe el tiempo\n utilizando A para moverse hacia la izquierda\n y D para moverse a la derecha.", "GANASTE!!!", "PERDISTE!"};
+float vel;
+float timer;
+int limite;
 void setup() {
   size(800, 600);
-  valoresIniciales();
+  cant=10;
+  separa=100;
+  y = 0;
+  vel=0.2;
+  xPlayer = 375;
+  limite=1110;
   noCursor();
 }
 void draw() {
   background(0);
   println(mouseX, mouseY);
   if (estadoJuego==0) {
-    pantallasI(txt[0], width/2, height/2);
-  } else if (estadoJuego==1) {
-    pantallasI (txt[1], 400, 100);
+    pantallas(txt[0], width/2, height/2);
+  } 
+  if (estadoJuego==1) {
+    pantallas (txt[1], 400, 100);
   } else if (estadoJuego==2) {
-    background(64, 48, 85);
-    noStroke();
-    fill(50, 34, 72);
-    rect(0, 500, 800, 100);
+    jugando();
     fill(188, 51, 51);
     rect (xPlayer, 470, 30, 30);
-    for (int i=0; i<10; i++) {
-      fill(137, 188, 51);
-      rect(random(width), random (y=y+suma), 20, 20);
-    }
+  }
+  if (estadoJuego>2) {
+    estadoJuego=2;
+  }
+  if (timer==limite) {
+    estadoJuego=3;
+    pantallas(txt[2], 400, 100);
+  }
+  if (y>500) {
+    y=-80;
   }
 }
 void keyPressed() {
-  if (key== 'x' || key=='X') {  //PASAR PANTALLAS.
+  if (key== ' ') { 
     estadoJuego++;
   }
   if (key == 'a' || key == 'A') { //IZQUIERDA.
-    xPlayer-=30;
+    xPlayer-=10;
   } else if (key=='d' || key =='D') { //DERECHA.
-    xPlayer+=30;
+    xPlayer+=10;
+  }
 }
